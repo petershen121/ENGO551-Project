@@ -167,16 +167,68 @@
     // }
 
     // nearest school and hospital from intermediate point
-    var intermFeatures = map.queryRenderedFeatures(e.point, {
-      layers: ['interm1']
+    // var intermFeatures = map.queryRenderedFeatures(e.point, {
+    //   layers: ['interm1']
+    // });
+    // if (!intermFeatures.length) {
+    //   return;
+    // }
+    //
+    // var nearestHospital = turf.nearest(intermFeatures[0], hospital);
+    //
+    // var nearestSchool = turf.nearest(intermFeatures[0], school);
+    //
+    // if (nearestHospital != null) {
+    //   map.getSource('nearest-hospital').setData({
+    //     'type': 'FeatureCollection',
+    //     'features': [nearestHospital]
+    //   });
+    //
+    //   map.addLayer(
+    //     {
+    //       id: 'nearest-hospital',
+    //       type: 'circle',
+    //       source: 'nearest-hospital',
+    //       paint: {
+    //         'circle-radius': 14,
+    //         'circle-color': '#ff0000'
+    //       }
+    //     },
+    //     'hospitals'
+    //   );
+    // }
+    //
+    // if (nearestSchool != null) {
+    //   map.getSource('nearest-school').setData({
+    //     'type': 'FeatureCollection',
+    //     'features': [nearestSchool]
+    //   });
+    //
+    //   map.addLayer(
+    //     {
+    //       id: 'nearest-school',
+    //       type: 'circle',
+    //       source: 'nearest-school',
+    //       paint: {
+    //         'circle-radius': 14,
+    //         'circle-color': '#7F00FF'
+    //       }
+    //     },
+    //     'school'
+    //   );
+    // }
+
+    // nearest hospital and school from start, end, or intermediate point
+    var markerFeatures = map.queryRenderedFeatures(e.point, {
+      layers: ['interm1', 'start', 'end']
     });
-    if (!intermFeatures.length) {
+    if (!markerFeatures.length) {
       return;
     }
 
-    var nearestHospital = turf.nearest(intermFeatures[0], hospital);
+    var nearestHospital = turf.nearest(markerFeatures[0], hospital);
 
-    var nearestSchool = turf.nearest(intermFeatures[0], school);
+    var nearestSchool = turf.nearest(markerFeatures[0], school);
 
     if (nearestHospital != null) {
       map.getSource('nearest-hospital').setData({
