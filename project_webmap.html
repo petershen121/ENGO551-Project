@@ -98,6 +98,7 @@
       },
       paint: { }
     });
+
     map.addSource('nearest-hospital', {
       type: 'geojson',
       data: {
@@ -119,7 +120,7 @@
   var popup = new mapboxgl.Popup();
   map.on('mousemove', function (e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['hospitals', 'school']
+      layers: ['hospitals', 'school', 'interm1']
     });
     if (!features.length) {
       popup.remove();
@@ -140,9 +141,9 @@
     var schoolFeatures = map.queryRenderedFeatures(e.point, {
       layers: ['school']
     });
-    if (!schoolFeatures.length) {
-      return;
-    }
+    // if (!schoolFeatures.length) {
+    //   return;
+    // }
 
     var schoolFeature = schoolFeatures[0];
 
@@ -172,9 +173,9 @@
     var hospitalFeatures = map.queryRenderedFeatures(e.point, {
       layers: ['hospitals']
     });
-    if (!hospitalFeatures.length) {
-      return;
-    }
+    // if (!hospitalFeatures.length) {
+    //   return;
+    // }
 
     var hospitalFeature = hospitalFeatures[0];
 
@@ -200,8 +201,37 @@
       );
     }
 
-
-
+    // nearest hospital from intermediate point
+    // var intermFeatures = map.queryRenderedFeatures(e.point, {
+    //   layers: ['interm1']
+    // });
+    // if (!intermFeatures.length) {
+    //   return;
+    // }
+    //
+    // var intermFeature = intermFeatures[0];
+    //
+    // var nearestHospital = turf.nearest(intermFeature, hospital);
+    //
+    // if (nearestHospital != null) {
+    //   map.getSource('nearest-hospital').setData({
+    //     'type': 'FeatureCollection',
+    //     'features': [nearestHospital]
+    //   });
+    //
+    //   map.addLayer(
+    //     {
+    //       id: 'nearest-hospital',
+    //       type: 'circle',
+    //       source: 'nearest-hospital',
+    //       paint: {
+    //         'circle-radius': 14,
+    //         'circle-color': '#2F4F4F'
+    //       }
+    //     },
+    //     'hospitals'
+    //   );
+    // }
 
   });
 
@@ -231,6 +261,7 @@
   map.on('load', go);
   map.on('click', go);
   map.on('dblclick', addpoint);
+  // map.on('click', nearest);
 
   function go(e) {
     if (e.type === 'click' && !start) start = [e.lngLat.lng, e.lngLat.lat];
@@ -310,6 +341,40 @@
       });
     }
   }
+
+  // function nearest(e) {
+  //   // nearest school from hospital
+  //   var hospitalFeatures = map.queryRenderedFeatures(e.point, {
+  //     layers: ['hospitals']
+  //   });
+  //   if (!hospitalFeatures.length) {
+  //     return;
+  //   }
+  //
+  //   var hospitalFeature = hospitalFeatures[0];
+  //
+  //   var nearestSchool = turf.nearest(hospitalFeature, school);
+  //
+  //   if (nearestSchool != null) {
+  //     map.getSource('nearest-school').setData({
+  //       'type': 'FeatureCollection',
+  //       'features': [nearestSchool]
+  //     });
+  //
+  //     map.addLayer(
+  //       {
+  //         id: 'nearest-school',
+  //         type: 'circle',
+  //         source: 'nearest-school',
+  //         paint: {
+  //           'circle-radius': 14,
+  //           'circle-color': '#8B0000'
+  //         }
+  //       },
+  //       'school'
+  //     );
+  //   }
+  // }
 
   function requestProfiles() {
     var queue = d3.queue();
