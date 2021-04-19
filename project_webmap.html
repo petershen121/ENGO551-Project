@@ -141,9 +141,9 @@
     var schoolFeatures = map.queryRenderedFeatures(e.point, {
       layers: ['school']
     });
-    // if (!schoolFeatures.length) {
-    //   return;
-    // }
+    if (!schoolFeatures.length) {
+      return;
+    }
 
     var schoolFeature = schoolFeatures[0];
 
@@ -173,9 +173,9 @@
     var hospitalFeatures = map.queryRenderedFeatures(e.point, {
       layers: ['hospitals']
     });
-    // if (!hospitalFeatures.length) {
-    //   return;
-    // }
+    if (!hospitalFeatures.length) {
+      return;
+    }
 
     var hospitalFeature = hospitalFeatures[0];
 
