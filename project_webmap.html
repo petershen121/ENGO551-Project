@@ -162,7 +162,7 @@
   var popup = new mapboxgl.Popup();
   map.on('mousemove', function (e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['hospitals', 'school']
+      layers: ['hospitals', 'school', 'art', 'police', 'station']
     });
     if (!features.length) {
       popup.remove();
