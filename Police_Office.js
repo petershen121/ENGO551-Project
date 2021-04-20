@@ -1,4 +1,4 @@
-{
+var police = {
    "type": "FeatureCollection",
    "features": [
   {
