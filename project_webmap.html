@@ -54,6 +54,9 @@
   <script src="hospital.js" type="text/javascript"></script>
   <script src="libraries.js" type="text/javascript"></script>
   <script src="School_Locations.js" type="text/javascript"></script>
+  <script src="LRT_Stations.js" type="text/javascript"></script>
+  <script src="Police_Office.js" type="text/javascript"></script>
+  <script src="Public_Art.js" type="text/javascript"></script>
   <!-- <script src="Community_Services.js" type="text/javascript"></script> -->
 
   <script>
@@ -67,7 +70,7 @@
     zoom: 13,
     hash: true
   });
-
+  map.doubleClickZoom.disable();
   // ***********************************************************************
   // *************************  Add hospital and school ********************
   // ***********************************************************************
@@ -99,6 +102,46 @@
       },
       paint: { }
     });
+
+    map.addLayer({
+      id: 'station',
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: station
+      },
+      layout: {
+        'icon-image': 'rail-15'
+      },
+      paint: { }
+    });
+
+    map.addLayer({
+      id: 'police',
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: police
+      },
+      layout: {
+        'icon-image': 'police-15'
+      },
+      paint: { }
+    });
+
+    map.addLayer({
+      id: 'art',
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: art
+      },
+      layout: {
+        'icon-image': 'theatre-15'
+      },
+      paint: { }
+    });
+
     map.addSource('nearest-hospital', {
       type: 'geojson',
       data: {
