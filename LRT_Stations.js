@@ -1,4 +1,4 @@
-{
+var station = {
    "type": "FeatureCollection",
    "features": [
   {
