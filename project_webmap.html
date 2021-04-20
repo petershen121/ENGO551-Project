@@ -156,6 +156,29 @@
         'features': []
       }
     });
+    map.addSource('nearest-station', {
+      type: 'geojson',
+      data: {
+        'type': 'FeatureCollection',
+        'features': []
+      }
+    });
+    map.addSource('nearest-police', {
+      type: 'geojson',
+      data: {
+        'type': 'FeatureCollection',
+        'features': []
+      }
+    });
+    map.addSource('nearest-art', {
+      type: 'geojson',
+      data: {
+        'type': 'FeatureCollection',
+        'features': []
+      }
+    });
+
+
 
   });
 
@@ -221,6 +244,12 @@
 
     var nearestSchool = turf.nearest(markerFeatures[0], school);
 
+    var nearestStation = turf.nearest(markerFeatures[0], station);
+
+    var nearestPolice = turf.nearest(markerFeatures[0], police);
+
+    var nearestArt = turf.nearest(markerFeatures[0], art);
+
     if (nearestHospital != null) {
       map.getSource('nearest-hospital').setData({
         'type': 'FeatureCollection',
@@ -254,12 +283,73 @@
           source: 'nearest-school',
           paint: {
             'circle-radius': 14,
-            'circle-color': '#9900ff'
+            'circle-color': '#ffff00'
           }
         },
         'school'
       );
     }
+
+    if (nearestStation != null) {
+      map.getSource('nearest-station').setData({
+        'type': 'FeatureCollection',
+        'features': [nearestStation]
+      });
+
+      map.addLayer(
+        {
+          id: 'nearestStation',
+          type: 'circle',
+          source: 'nearest-station',
+          paint: {
+            'circle-radius': 14,
+            'circle-color': '#ff6600'
+          }
+        },
+        'station'
+      );
+    }
+
+    if (nearestPolice != null) {
+      map.getSource('nearest-police').setData({
+        'type': 'FeatureCollection',
+        'features': [nearestPolice]
+      });
+
+      map.addLayer(
+        {
+          id: 'nearestPolice',
+          type: 'circle',
+          source: 'nearest-police',
+          paint: {
+            'circle-radius': 14,
+            'circle-color': '#3333cc'
+          }
+        },
+        'police'
+      );
+    }
+
+    if (nearestArt != null) {
+      map.getSource('nearest-art').setData({
+        'type': 'FeatureCollection',
+        'features': [nearestArt]
+      });
+
+      map.addLayer(
+        {
+          id: 'nearestArt',
+          type: 'circle',
+          source: 'nearest-art',
+          paint: {
+            'circle-radius': 14,
+            'circle-color': '#9900ff'
+          }
+        },
+        'art'
+      );
+    }
+
 
   });
 
@@ -457,7 +547,7 @@
       if (map.getSource(profile + ' route')) map.removeSource(profile + ' route');
     });
 
-    ['start', 'end','interm1','nearesthospital', 'nearestSchool'].forEach(function(item) {
+    ['start', 'end','interm1','nearesthospital', 'nearestSchool', 'nearestStation', 'nearestPolice', 'nearestArt'].forEach(function(item) {
       if (map.getLayer(item)) map.removeLayer(item);
       if (map.getSource(item)) map.removeSource(item);
     });
@@ -466,6 +556,10 @@
     end = null;
     interm1 = null;
     nearesthospital = null;
+    nearestSchool = null;
+    nearestStation = null;
+    nearestPolice = null;
+    nearestArt = null;
   }
 
 </script>
