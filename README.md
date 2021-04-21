@@ -15,6 +15,7 @@ Below are some screenshot of each function of the web map:
  ![image](https://user-images.githubusercontent.com/59627435/115614891-77537e80-a2ab-11eb-9b88-bfdf59e69ffe.png)
 
 2. The function of trajectory generating function:
+
  ![image](https://user-images.githubusercontent.com/59627435/115614961-92be8980-a2ab-11eb-91ef-3c7beb6e368b.png)
 
 3. The function of finding the nearest facilities from one point selected by user:
