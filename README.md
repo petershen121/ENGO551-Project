@@ -26,4 +26,5 @@ Below are some screenshot of each function of the web map:
 ![image](https://user-images.githubusercontent.com/59627435/115615044-a9fd7700-a2ab-11eb-83b6-065810beda42.png)
 
 To achieve the video demonstration of the web map app, please go to the following YouTube link:
+
 https://www.youtube.com/watch?v=AhbI8R4j__k
